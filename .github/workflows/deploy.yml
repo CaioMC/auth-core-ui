@@ -32,4 +32,4 @@ jobs:
 
     - name: Deploy
       if: success()
-      run: aws s3 sync ./dist/angular-github-actions-amazon-s3-v1 s3://angular-github-actions-amazon-s3-v1
+      run: aws s3 sync ./dist/auth-core-ui s3://angular-github-actions-amazon-s3-v1
