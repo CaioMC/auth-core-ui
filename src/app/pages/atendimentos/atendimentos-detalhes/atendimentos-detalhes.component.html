@@ -1,0 +1,58 @@
+<div class="py-5 pl-5">
+    <mat-stepper orientation="vertical" style="width: 80%;" [linear]="true" #stepper>
+        <mat-step [stepControl]="formGroupAtendimento">
+            <ng-template matStepLabel>Atendimento</ng-template>
+            <form class="pt-5" [formGroup]="formGroupAtendimento">
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Paciente</mat-label>
+                    <input type="text"
+                           matInput
+                           formControlName="pacienteId"
+                           [matAutocomplete]="auto">
+                          <mat-autocomplete [displayWith]="displayFn.bind(this)" autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+                              {{option.nome}}
+                            </mat-option>
+                          </mat-autocomplete>
+                  </mat-form-field>
+        
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Queixa Principal</mat-label>
+                    <input matInput formControlName="queixaPrincipal">
+                  </mat-form-field>
+                  <div class="flex flex-col lg:flex-row-reverse items-center justify-between py-4 sm: border-t">
+                    <button matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Proxímo</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="formGroupProntuario">
+            <ng-template matStepLabel>Prontuário</ng-template>
+            <form class="pt-5" [formGroup]="formGroupProntuario">
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Histórico Antecedentes</mat-label>
+                    <textarea matInput formControlName="historicoAntecedentes"></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Exame Físico</mat-label>
+                    <textarea matInput formControlName="exameFisico"></textarea>
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Condutas</mat-label>
+                    <textarea matInput formControlName="condutas"></textarea>
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Diagnóstico</mat-label>
+                    <input matInput formControlName="diagnostico" />
+                  </mat-form-field>
+                  <div class="flex flex-col lg:flex-row-reverse items-center justify-between py-4 sm: border-t">
+                    <button (click)="concluirCadastro()" matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 200px;">
+                        <div *ngIf="!atendimentoSelecionado?.id">Criar atendimento</div>
+                        <div *ngIf="atendimentoSelecionado?.id">Confirmar edição</div>
+                    </button>
+                    <button matStepperPrevious mat-flat-button color="warn" style="color: white; width: 150px;">Voltar</button>
+                  </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+</div>

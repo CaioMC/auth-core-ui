@@ -1,0 +1,37 @@
+<div style="display: flex; height: 100%;">
+    <div class="hidden md:flex " style="background-color: rgba(84, 181, 236, 1); width: 25%; max-width: 450px; min-width: 350px; align-items: center; justify-content: center;">
+        <div style="padding: 47px;">
+            <div style="font-size: 48px; font-family: Inter; color: white; font-weight: bold; padding-bottom: 25px; line-height: 1.1;">Olá, Ficamos felizes em ver você novamemte</div>
+            <div style="font-size: 28px; font-family: Inter; color: white; line-height: 1;">Caso não tenha cadastro, crie a sua conta agora!</div>
+            <div style="display: flex; justify-content: center; padding-top: 35px;">
+                <button (click)="cadastrar()" mat-stroked-button style="border-radius: 24px; border-color: white !important; font-family: Inter; font-size: 28px; color: white; height: 50px;">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+    <div class="w-full" style="display: flex; width: 100%; justify-content: center;">
+        <div class="w-full" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px;">
+            <div style="font-family: Inter; font-size: 48px; font-weight: bold; color: rgba(84, 181, 236, 1); padding-bottom: 34px;">Login</div>
+            <form class="w-full px-5 sm:w-1/2 md:w-1/2 xl:w-1/3" [formGroup]="loginFormGroup">
+                <div>
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Nome ou CPF</mat-label>
+                        <input matInput formControlName="login">
+                        <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input [type]="isShowPassword ? 'password' : 'text'" matInput formControlName="senha">
+                        <mat-icon class="cursor-pointer" (click)="isShowPassword = true" matSuffix *ngIf="!isShowPassword">visibility</mat-icon>
+                        <mat-icon class="cursor-pointer" (click)="isShowPassword = false" matSuffix *ngIf="isShowPassword">visibility_off</mat-icon>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div class="flex flex-col justify-center">
+                <button (click)="postLogin()" mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px; ">Entrar</button>
+                <div style="font-weight: 500; font-size: .75rem; margin-left: -15px; color: rgb(61, 61, 61);" class="md:hidden pt-2">Não tem conta? <a (click)="cadastrar()" style="text-decoration: underline;">cadastre-se aqui</a></div>
+            </div>
+        </div>
+    </div>
+</div>

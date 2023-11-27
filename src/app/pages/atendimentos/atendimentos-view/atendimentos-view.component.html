@@ -1,0 +1,51 @@
+<div *ngIf="!isEditContract && atendimento">
+    <div class="flex py-5 pl-5 justify-start">
+        <div class="pr-15">
+            <div class="cor-principal-texto" style="font-family: Inter; font-size: 1.2rem; font-weight: bold;">DADOS</div>
+            <div class="py-3">
+                <div class="text-resize leading-6 text-secondary">
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Nome do paciente:', value: atendimento.pacienteNome}}"></ng-container>
+                    <div style="width: 200px;">
+                        <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Queixa principal:', value: atendimento.queixaPrincipal}}"></ng-container>
+                    </div>
+                    <div *ngIf="atendimento.dataAtendimento" style="line-height: 1.5rem; font-size: 14px; color: #64748b;" class="text-resize leading-6 text-secondary"> 
+                        Data de atendimento
+                        <div style="font-weight: 800; color: #64748b;" class="text-1xl font-extrabold tracking-tight"> 
+                            {{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-r"></div>
+        <div class="pl-9">
+            <div class="cor-principal-texto" style="font-family: Inter; font-size: 1.2rem; font-weight: bold;">PRONTUÁRIO</div>
+            <div class="py-3">
+                <div class="text-resize leading-6 text-secondary">
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Histórico antecedentes:', value: atendimento.historicoAntecedentes}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Histórico antecedentes:', value: atendimento.historicoAntecedentes}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Histórico antecedentes:', value: atendimento.historicoAntecedentes}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Diagnóstico:', value: atendimento.diagnostico}}"></ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-b"></div>
+    <div class="p-5 flex justify-between">
+        <button (click)="editarAtendimento()" mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1);">Editar atendimento</button>
+        <button (click)="deletarAtendimento()" mat-flat-button color="warn" style="color: white;">Excluir atendimento</button>
+    </div>
+</div>
+
+<div *ngIf="isEditContract">
+    <app-atendimentos-detalhes (fecharEditar)="fecharEditar()" [atendimentoSelecionado]="atendimento"></app-atendimentos-detalhes>
+</div>
+
+<ng-template let-data #data>
+    <div *ngIf="data.value" style="line-height: 1.5rem; font-size: 14px; color: #64748b;" class="text-resize leading-6 text-secondary"> 
+        {{data.label}}
+        <div style="font-weight: 800; color: #64748b; word-break: break-all;" class="text-1xl font-extrabold tracking-tight "> 
+            {{data.value}}
+        </div>
+    </div>
+</ng-template>

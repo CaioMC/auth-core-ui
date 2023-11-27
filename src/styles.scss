@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.inventory-grid-cash {
+    grid-template-columns: 300px auto 100px 150px 150px;
+}
+
+.inventory-grid-cash-atendimentos {
+    grid-template-columns: 300px auto 250px 150px 150px;
+}
+
+.default-button-toggle {
+    display: flex;
+    margin: 8px 0 !important;
+    text-align-last: left !important;
+    border-radius: 8px !important;
+
+    &-menu {
+        padding: 2px;
+    }
+}
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+    border-right-style: hidden;
+}
+
+.red-snackbar {
+    background: #F44336;
+    color: white;
+}
+
+::ng-deep .warning{
+    background: 'yellow';
+ }
+
+.cor-principal-texto {
+    color: rgba(84, 181, 236, 1);
+}
+
+.elipsis {
+    text-overflow: ellipsis !important;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &-with-width {
+        width: 180px;
+    }
+}

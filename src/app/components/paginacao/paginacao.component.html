@@ -1,0 +1,13 @@
+<div style="align-items: baseline;" class="flex pl-5 gap-3">
+    <form [formGroup]="formGroup">
+        <mat-form-field style="width: 150px;" appearance="outline">
+            <mat-select (selectionChange)="change()" formControlName="itensPorPagina">
+                <mat-option [value]="10">10</mat-option>
+                <mat-option [value]="20">20</mat-option>
+                <mat-option [value]="30">30</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+    </form>
+    <div style="align-items: center; align-content: center;">Resultados por página </div>
+</div>

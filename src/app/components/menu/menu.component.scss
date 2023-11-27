@@ -1,0 +1,10 @@
+.default-button-toggle {
+    display: flex;
+    margin: 8px 0 !important;
+    text-align-last: left !important;
+    border-radius: 8px !important;
+
+    &-menu {
+        padding: 2px;
+    }
+}

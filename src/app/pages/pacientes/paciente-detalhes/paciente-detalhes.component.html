@@ -1,0 +1,164 @@
+<div class="px-5 pb-5">
+    <mat-stepper orientation="vertical" style="width: 80%;" [linear]="true" #stepper>
+        <mat-step [stepControl]="formGroupGeral">
+          <form [formGroup]="formGroupGeral">
+            <ng-template matStepLabel>Geral</ng-template>
+            <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Data de aniversário</mat-label>
+                    <input matInput formControlName="nascimento" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker">
+                      <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="sexo">
+                        <mat-option [value]="'MASCULINO'">Homem</mat-option>
+                        <mat-option [value]="'FEMININO'">Mulher</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input required matInput formControlName="email">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>CPF</mat-label>
+                    <input matInput formControlName="cpf">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>RG</mat-label>
+                    <input matInput formControlName="rg">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Telefone</mat-label>
+                    <input matInput formControlName="telefone">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Telefone trabalho</mat-label>
+                    <input matInput formControlName="telefoneTrabalho">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Codigo</mat-label>
+                    <input matInput formControlName="codigo">
+                </mat-form-field>
+            </div>
+            <div class="flex flex-col lg:flex-row-reverse items-center justify-between py-4 sm: border-t">
+                <button matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Proxímo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="formGroupEndereco" label="Endereço">
+            <form [formGroup]="formGroupEndereco">
+              <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                      <mat-label>CEP</mat-label>
+                      <input matInput formControlName="cep">
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                      <mat-label>Endereço</mat-label>
+                      <input matInput formControlName="endereco">
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Número</mat-label>
+                    <input matInput formControlName="numero">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>bairro</mat-label>
+                    <input matInput formControlName="bairro">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput formControlName="complemento">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="uf">
+                        <mat-option value="ACRE">Acre</mat-option>
+                        <mat-option value="ALAGOAS">Alagoas</mat-option>
+                        <mat-option value="AMAPA">Amapá</mat-option>
+                        <mat-option value="AMAZONAS">Amazonas</mat-option>
+                        <mat-option value="BAHIA">Bahia</mat-option>
+                        <mat-option value="CEARA">Ceará</mat-option>
+                        <mat-option value="DISTRITO_FEDERAL">Distrito Federal</mat-option>
+                        <mat-option value="ESPIRITO_SANTO">Espírito Santo</mat-option>
+                        <mat-option value="GOIAS">Goiás</mat-option>
+                        <mat-option value="MARANHAO">Maranhão</mat-option>
+                        <mat-option value="MATO_GROSSO">Mato Grosso</mat-option>
+                        <mat-option value="MATO_GROSSO_SUL">Mato Grosso do Sul</mat-option>
+                        <mat-option value="MINAS_GERAIS">Minas Gerais</mat-option>
+                        <mat-option value="PARA">Pará</mat-option>
+                        <mat-option value="PARAIBA">Paraíba</mat-option>
+                        <mat-option value="PARANA">Paraná</mat-option>
+                        <mat-option value="PERNAMBUCO">Pernambuco</mat-option>
+                        <mat-option value="PIAUI">Piauí</mat-option>
+                        <mat-option value="RIO_JANEIRO">Rio de Janeiro</mat-option>
+                        <mat-option value="RIO_GRANDE_NORTE">Rio Grande do Norte</mat-option>
+                        <mat-option value="RIO_GRANDE_SUL">Rio Grande do Sul</mat-option>
+                        <mat-option value="RONDONIA">Rondônia</mat-option>
+                        <mat-option value="RORAIMA">Roraima</mat-option>
+                        <mat-option value="SANTA_CATARINA">Santa Catarina</mat-option>
+                        <mat-option value="SAO_PAULO">São Paulo</mat-option>
+                        <mat-option value="SERGIPE">Sergipe</mat-option>
+                        <mat-option value="TOCANTIS">Tocantins</mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Cidade</mat-label>
+                    <input matInput formControlName="cidade">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>País</mat-label>
+                    <input matInput formControlName="pais">
+                </mat-form-field>
+              </div>
+              <div class="flex flex-col lg:flex-row-reverse items-center justify-between py-4 sm: border-t">
+                <button matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Proxímo</button>
+                <button matStepperPrevious mat-flat-button color="warn" style="color: white; width: 150px;">Voltar</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="formGroupConveio" label="Convênio">
+            <form [formGroup]="formGroupConveio">
+              <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                      <mat-label>Convênio</mat-label>
+                      <input matInput formControlName="convenio">
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                      <mat-label>Número da carteirinha</mat-label>
+                      <input matInput formControlName="numeroCarteirinha">
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Acomodação</mat-label>
+                    <input matInput formControlName="acomodacao">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Plano</mat-label>
+                    <input matInput formControlName="plano">
+                </mat-form-field>
+                <mat-form-field style="width: 100%; min-width: 250px;" appearance="outline">
+                    <mat-label>Validade</mat-label>
+                    <input matInput formControlName="validade" [matDatepicker]="pickerValidade">
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerValidade">
+                      <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerValidade></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="flex flex-col lg:flex-row-reverse items-center justify-between py-4 sm: border-t">
+                <button (click)="concluirCadastro()" matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 200px;">
+                    <div *ngIf="!pacienteSelecionado.id">Criar paciente</div>
+                    <div *ngIf="pacienteSelecionado.id">Confirmar edição</div>
+                </button>
+                <button matStepperPrevious mat-flat-button color="warn" style="color: white; width: 150px;">Voltar</button>
+              </div>
+            </form>
+          </mat-step>
+      </mat-stepper>
+</div>

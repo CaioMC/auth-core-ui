@@ -1,0 +1,195 @@
+<div style="display: flex; height: 100%;">
+    <div class="hidden lg:flex " style="background-color: rgba(84, 181, 236, 1); width: 25%; max-width: 450px; min-width: 350px; align-items: center; justify-content: center;">
+        <div style="padding: 47px;">
+            <div style="font-size: 48px; font-family: 'Inter Variable Font', sans-serif; color: white; font-weight: bold; padding-bottom: 25px; line-height: 1.1;">
+                Olá, seja bem-vindo!
+            </div>
+            <div style="font-size: 28px; font-family: Inter; color: white; line-height: 1;">Acesse sua conta agora mesmo.</div>
+            <div style="display: flex; justify-content: center; padding-top: 35px;">
+                <button (click)="logar()" mat-stroked-button style="border-radius: 24px; border-color: white !important; font-family: Inter; font-size: 28px; color: white; height: 50px;">Login</button>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; width: 100%; justify-content: center;">
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; width: 100%;">
+            <div style="padding-bottom: 34px;" class="flex flex-col">
+                <div style="font-family: Inter; font-size: 40px; font-weight: bold; color: rgba(84, 181, 236, 1);">Cadastra-se</div>
+                <div style="font-weight: 500; font-size: .75rem; margin-left: 25px; color: rgb(61, 61, 61);" class="lg:hidden pt-2">Já possui conta? <a (click)="logar()" style="text-decoration: underline;">Faça login aqui</a></div>
+            </div>
+            <mat-stepper [orientation]="isSmallScreen ? 'vertical' : 'horizontal'" orientation="horizontal" style="width: 80%;" [linear]="true" #stepper>
+                <mat-step [stepControl]="dadosPessoaisFormGroup">
+                  <form [formGroup]="dadosPessoaisFormGroup">
+                    <ng-template matStepLabel>Dados pessoais</ng-template>
+                    <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                        <div class="flex justify-center flex-col md:flex-row gap-3">
+                            <mat-form-field class="w-full md:w-1/2" appearance="outline">
+                                <mat-label>Nome</mat-label>
+                                <input matInput formControlName="nome">
+                            </mat-form-field>
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>CPF</mat-label>
+                                <input matInput formControlName="cpf">
+                            </mat-form-field>
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Sexo</mat-label>
+                                <mat-select formControlName="sexo">
+                                    <mat-option [value]="'MASCULINO'">Homem</mat-option>
+                                    <mat-option [value]="'FEMININO'">Mulher</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex justify-center flex-col md:flex-row gap-3">
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Celular</mat-label>
+                                <input mask="(00) 00000-0000" matInput formControlName="celular">
+                            </mat-form-field>
+                            <mat-form-field class="w-full" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input required matInput formControlName="email">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <button matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Proxímo</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="dadosMedicos" label="Dados médicos">
+                  <form [formGroup]="dadosMedicos">
+                    <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                        <div class="flex justify-center flex-col md:flex-row gap-3">
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Tratamento</mat-label>
+                                <mat-select formControlName="tratamento">
+                                    <mat-option value="DR">Dr.</mat-option>
+                                    <mat-option value="DRA">Dra.</mat-option>
+                                    <mat-option value="SR">Sr.</mat-option>
+                                    <mat-option value="SRA">Sra.</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Conselho Profissional</mat-label>
+                                <mat-select formControlName="concelhoProfissional">
+                                    <mat-option value="CBOO">CBOO</mat-option>
+                                    <mat-option value="CONAHOM">CONAHOM</mat-option>
+                                    <mat-option value="CRAS">CRAS</mat-option>
+                                    <mat-option value="CRBM">CRBM</mat-option>
+                                    <mat-option value="CREFITO">CREFITO</mat-option>
+                                    <mat-option value="COREN">COREN</mat-option>
+                                    <mat-option value="CREF">CREF</mat-option>
+                                    <mat-option value="CRF">CRF</mat-option>
+                                    <mat-option value="CRFA">CRFA</mat-option>
+                                    <mat-option value="CRM">CRM</mat-option>
+                                    <mat-option value="CRN">CRN</mat-option>
+                                    <mat-option value="CRO">CRO</mat-option>
+                                    <mat-option value="CRP">CRP</mat-option>
+                                    <mat-option value="CRT">CRT</mat-option>
+                                    <mat-option value="CRNT">CRNT</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Registro</mat-label>
+                                <input matInput formControlName="registro">
+                            </mat-form-field>
+                        </div>
+                        <div class="flex justify-center flex-col md:flex-row gap-3">
+                            <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                <mat-label>Estado</mat-label>
+                                <mat-select formControlName="uf">
+                                  <mat-option value="ACRE">Acre</mat-option>
+                                  <mat-option value="ALAGOAS">Alagoas</mat-option>
+                                  <mat-option value="AMAPA">Amapá</mat-option>
+                                  <mat-option value="AMAZONAS">Amazonas</mat-option>
+                                  <mat-option value="BAHIA">Bahia</mat-option>
+                                  <mat-option value="CEARA">Ceará</mat-option>
+                                  <mat-option value="DISTRITO_FEDERAL">Distrito Federal</mat-option>
+                                  <mat-option value="ESPIRITO_SANTO">Espírito Santo</mat-option>
+                                  <mat-option value="GOIAS">Goiás</mat-option>
+                                  <mat-option value="MARANHAO">Maranhão</mat-option>
+                                  <mat-option value="MATO_GROSSO">Mato Grosso</mat-option>
+                                  <mat-option value="MATO_GROSSO_SUL">Mato Grosso do Sul</mat-option>
+                                  <mat-option value="MINAS_GERAIS">Minas Gerais</mat-option>
+                                  <mat-option value="PARA">Pará</mat-option>
+                                  <mat-option value="PARAIBA">Paraíba</mat-option>
+                                  <mat-option value="PARANA">Paraná</mat-option>
+                                  <mat-option value="PERNAMBUCO">Pernambuco</mat-option>
+                                  <mat-option value="PIAUI">Piauí</mat-option>
+                                  <mat-option value="RIO_JANEIRO">Rio de Janeiro</mat-option>
+                                  <mat-option value="RIO_GRANDE_NORTE">Rio Grande do Norte</mat-option>
+                                  <mat-option value="RIO_GRANDE_SUL">Rio Grande do Sul</mat-option>
+                                  <mat-option value="RONDONIA">Rondônia</mat-option>
+                                  <mat-option value="RORAIMA">Roraima</mat-option>
+                                  <mat-option value="SANTA_CATARINA">Santa Catarina</mat-option>
+                                  <mat-option value="SAO_PAULO">São Paulo</mat-option>
+                                  <mat-option value="SERGIPE">Sergipe</mat-option>
+                                  <mat-option value="TOCANTIS">Tocantins</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            <mat-form-field class="w-full md:w-full" appearance="outline">
+                                <mat-label>Profissão</mat-label>
+                                <mat-select formControlName="profissao">
+                                    <mat-option value="ASSISTENTE_SOCIAL">Assistente Social</mat-option>
+                                    <mat-option value="BIOLOGO">Biólogo</mat-option>
+                                    <mat-option value="DENTISTA">Dentista</mat-option>
+                                    <mat-option value="EDUCADOR_FISICO">Educador Físico</mat-option>
+                                    <mat-option value="ENFERMEIRO">Enfermeiro</mat-option>
+                                    <mat-option value="FARMACEUTICO">Farmacêutico</mat-option>
+                                    <mat-option value="FISIOTERAPEUTA">Fisioterapeuta</mat-option>
+                                    <mat-option value="FONOAUDIOLOGO">Fonoaudiólogo</mat-option>
+                                    <mat-option value="MEDICO">Médico</mat-option>
+                                    <mat-option value="MASSOTERAPEUTA">Massoterapeuta</mat-option>
+                                    <mat-option value="NUTRICIONISTA">Nutricionista</mat-option>
+                                    <mat-option value="PSICOLOGO">Psicólogo</mat-option>
+                                    <mat-option value="TERAPEUTA_OCUPACIONAL">Terapeuta Ocupacional</mat-option>
+                                    <mat-option value="TERAPEUTA_HOLISTICO">Terapeuta Holístico</mat-option>
+                                    <mat-option value="OUTRO">Outro</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 5px;" class="flex justify-center">
+                        <button matStepperPrevious mat-flat-button color="warn" style="color: white; width: 150px;">Voltar</button>
+                        <button matStepperNext mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Proxímo</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="dadosProfissionais">
+                    <ng-template matStepLabel>Dados profissionais</ng-template>
+                    <form [formGroup]="dadosProfissionais">
+                        <div style="display: flex; flex-direction: column; padding-top: 10px;">
+                            <div class="flex justify-center flex-col md:flex-row gap-3">
+                                <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                    <mat-label>CBO</mat-label>
+                                    <input matInput formControlName="cbo">
+                                </mat-form-field>
+                                <mat-form-field class="w-full md:w-1/3" appearance="outline">
+                                    <mat-label>RQE</mat-label>
+                                    <input matInput formControlName="rqe">
+                                </mat-form-field>
+                                <mat-form-field class="w-full md:w-1/2" appearance="outline">
+                                    <mat-label>CNES</mat-label>
+                                    <input matInput formControlName="cnes">
+                                </mat-form-field>
+                            </div>
+                            <div class="flex justify-center flex-col md:flex-row gap-3">
+                                <mat-form-field class="w-full" appearance="outline">
+                                    <mat-label>Senha</mat-label>
+                                    <input matInput formControlName="senha" type="password">
+                                </mat-form-field>
+                                <mat-form-field class="w-full" appearance="outline">
+                                    <mat-label>Confirme a Senha</mat-label>
+                                    <input matInput formControlName="confirmaSenha" type="password">
+                                    <mat-error *ngIf="dadosProfissionais.get('confirmaSenha')?.errors?.['senhaNaoBate']">As senhas não conferem</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 5px;" class="justify-center">
+                            <button matStepperPrevious mat-flat-button color="warn" style="color: white; width: 150px;">Voltar</button>
+                            <button (click)="criarConta()" mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1); width: 150px;">Criar conta</button>
+                        </div>
+                    </form>
+                  </mat-step>
+              </mat-stepper>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<!-- <div class="flex h-full">
+    <mat-button-toggle-group vertical class="w-full mt-2 gap-2" [value]="menu">
+        <div style="display: flex; height: 100%;">
+            <div style="background-color: rgba(84, 181, 236, 1); width: 100%; max-width: 250px;">
+                <div style="display: flex; flex-direction: column;" class="mr-1 white flex-columns">
+                    <div class="px-2">
+                        <p class="menu-title">
+                            Pacientes
+                        </p>
+                    </div>
+
+                    <mat-button-toggle class="default-button-toggle default-button-toggle-menu" value="/patients" routerLink="/patients">
+                        <mat-label>
+                            Pacientes
+                        </mat-label>
+                    </mat-button-toggle>
+
+                    <mat-button-toggle class="default-button-toggle default-button-toggle-menu" value="/services" routerLink="/services">
+                        <mat-label>
+                            Atendimentos
+                        </mat-label>
+                    </mat-button-toggle>
+                </div>
+            </div>
+        </div>
+    </mat-button-toggle-group>
+</div>  -->
+
+<div class="flex h-full">
+    <div style="background-color: rgba(84, 181, 236, 1); width: 100%; max-width: 250px;">
+        <div class="p-5">
+            <app-bg-card>
+                <div class="flex flex-col items-center w-full p-4">
+                    <mat-icon class="mt-5" style="transform: scale(3);">account_circle</mat-icon>
+                    <div class="flex flex-col items-center justify-center w-full mt-6">
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 3px"  class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
+                            {{name}} <mat-icon (click)="deslogar()" class="cursor-pointer">exit_to_app</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </app-bg-card>
+            <div class="mt-10">
+                <div class="flex flex-col">
+                    <div class="flex justify-between gap-2">
+                        <div class="flex gap-2">
+                            <mat-icon [ngStyle]="{'color':'white'}">assignment_ind</mat-icon>
+                            <div style="font-family: Roboto; color: white; font-size: 20px; font-weight: 400;">Prontuário</div>
+                        </div>
+                        <mat-icon class="cursor-pointer" *ngIf="childrenPacientes" style="color: white;" (click)="childrenPacientes = false">keyboard_arrow_down</mat-icon>
+                        <mat-icon class="cursor-pointer" *ngIf="!childrenPacientes" style="color: white;" (click)="childrenPacientes = true">keyboard_arrow_right</mat-icon>
+                    </div>
+                    <div class="pl-12 py-2 flex flex-col gap-2" *ngIf="childrenPacientes">
+                        <div (click)="navigateTo('/patients')" style="font-family: Roboto; color: white; font-size: 18px; font-weight: lighter; cursor: pointer;">Pacientes</div>
+                        <div (click)="navigateTo('/services')" style="font-family: Roboto; color: white; font-size: 18px; font-weight: lighter; cursor: pointer;">Atendimentos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

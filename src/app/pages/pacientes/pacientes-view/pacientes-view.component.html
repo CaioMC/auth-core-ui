@@ -1,0 +1,76 @@
+<div *ngIf="!isEditContract">
+    <div class="flex p-5 justify-start">
+        <div class="pr-15">
+            <div class="cor-principal-texto" style="font-family: Inter; font-size: 1.2rem; font-weight: bold;">DADOS GERAIS</div>
+            <div class="py-3">
+                <div class="text-resize leading-6 text-secondary">
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Nome:', value: paciente.nome}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Código:', value: paciente.codigo}}"></ng-container>
+                    <div *ngIf="paciente.nascimento" style="line-height: 1.5rem; font-size: 14px; color: #64748b;" class="text-resize leading-6 text-secondary"> 
+                        Data de nascimento
+                        <div style="font-weight: 800; color: #64748b;" class="text-1xl font-extrabold tracking-tight"> 
+                            {{paciente.nascimento | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </div>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Sexo:', value: paciente.sexo}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'E-mail:', value: paciente.email}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'CPF:', value: paciente.cpf}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Telefone:', value: paciente.telefone}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Telefone Trabalho:', value: paciente.telefoneTrabalho}}"></ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="border-r"></div>
+        <div class="px-15">
+            <div class="cor-principal-texto" style="font-family: Inter; font-size: 1.2rem; font-weight: bold;">ENDEREÇO</div>
+            <div class="py-3">
+                <div class="text-resize leading-6 text-secondary">
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'CEP:', value: paciente.cep}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Endereço:', value: paciente.endereco}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Complemento:', value: paciente.complemento}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Cidade:', value: paciente.cidade}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'País:', value: paciente.pais}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Número:', value: paciente.numero}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Bairro:', value: paciente.bairro}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'UF:', value: paciente.uf}}"></ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="border-r"></div>
+        <div class="pl-15">
+            <div class="cor-principal-texto" style="font-family: Inter; font-size: 1.2rem; font-weight: bold;">DADOS DO CONVÊNIO</div>
+            <div class="py-3">
+                <div class="text-resize leading-6 text-secondary">
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Convênio:', value: paciente.convenio}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Número Carteirinha:', value: paciente.numeroCarteirinha}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Acomodação:', value: paciente.acomodacao}}"></ng-container>
+                    <ng-container *ngTemplateOutlet="data; context: {$implicit: {label: 'Plano:', value: paciente.plano}}"></ng-container>
+                    <div *ngIf="paciente.validade" style="line-height: 1.5rem; font-size: 14px; color: #64748b;" class="text-resize leading-6 text-secondary"> 
+                        Data de validade
+                        <div style="font-weight: 800; color: #64748b;" class="text-1xl font-extrabold tracking-tight"> 
+                            {{paciente.validade | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-b"></div>
+    <div class="p-5 flex justify-between">
+        <button (click)="editarPaciente()" mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1);">Editar paciente</button>
+        <button (click)="deletarPaciente()" mat-flat-button color="warn" style="color: white;">Excluir paciente</button>
+    </div>
+</div>
+
+<div *ngIf="isEditContract">
+    <app-paciente-detalhes (fecharEditar)="fecharEditar()" [pacienteSelecionado]="paciente"></app-paciente-detalhes>
+</div>
+
+<ng-template let-data #data>
+    <div *ngIf="data.value" style="line-height: 1.5rem; font-size: 14px; color: #64748b;" class="text-resize leading-6 text-secondary"> 
+        {{data.label}}
+        <div style="font-weight: 800; color: #64748b;" class="text-1xl font-extrabold tracking-tight "> 
+            {{data.value}}
+        </div>
+    </div>
+</ng-template>

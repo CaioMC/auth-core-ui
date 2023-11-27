@@ -1,0 +1,98 @@
+<div class="flex h-full">
+    <app-menu style="width: 15%; max-width: 250px; height: 100%;"></app-menu>
+    <div style="padding: 30px; width: 100%;">
+        <as-split direction="horizontal" class=" w-full" unit="percent">
+            <as-split-area [size]="'*'" class="flex h-full w-full p-6 md:p-14" style="order: 0; flex: 0 0 100%;">
+                <app-bg-card style="width: 100%;">
+                    <div class="flex p-5 justify-between">
+                        <div class="flex gap-5" style="align-items: center;">
+                            <div style="font-family: Inter; font-size: 30px; align-items: center; display: flex;">Pacientes</div>
+                            <button (click)="selecionarPaciente({})" mat-flat-button style="color: white; background-color: rgba(84, 181, 236, 1);">
+                                <mat-icon>add</mat-icon>
+                                Incluir paciente</button>
+                        </div>
+                        <div class="rounded-2xl bg-gray-100 w-40 h-20">
+                            <div class="flex flex-col items-center text-secondary p-2">
+                                <div style="color: #64748b;" class="text-4xl font-semibold leading-none tracking-tight mt-2">
+                                    {{pacientes.length}}
+                                </div>
+                                <div style="font-weight: 500; font-size: .75rem; color: #64748b;" class="mt-1 text-sm font-medium text-center">
+                                    Total de pacientes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="px-5 w-1/3" [formGroup]="formGroup">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>Nome do paciente</mat-label>
+                            <input matInput type="text" formControlName="nomePaciente">
+                        </mat-form-field>
+                    </form>
+                    <ng-container *ngIf="pacientes.length > 0; else naoTemPacientes">
+                        <div style="display: flex; width: 100%; flex-direction: column; flex: 1; overflow: hidden;" class="flex w-full flex-col flex-auto overflow-hidden sm:overflow-y-auto">
+                            <ng-container>
+                                <div style="color: #64748b;" class="inventory-grid-cash z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50">
+                                    <div>
+                                        ID
+                                    </div>
+                                    <div class="hidden md:block">
+                                        NOME
+                                    </div>
+                                    <div>
+                                        TELEFONE
+                                    </div>
+                                    <div class="hidden sm:block">
+                                        CÓDIGO
+                                    </div>
+                                    <div class="hidden xl:block">
+                                        ÚLTIMA CONSULTA
+                                    </div>
+                                </div>
+                                <ng-container *ngFor="let cash of pacientes | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual }; let i = index; ">
+                                    <a  (click)="selecionarPaciente(cash)" class="inventory-grid-cash grid items-center gap-4 py-3 px-6 md:px-8 border-b cursor-pointer hover:bg-gray-300/50">
+                                        <div style="inline-size: max-content;" class="hidden lg:block elipsis-with-width">
+                                            {{cash.id}}
+                                        </div>
+                                        <div class="hidden md:block elipsis">
+                                            {{cash.nome}}
+                                        </div>
+                                        <div class="elipsis">
+                                            {{cash.telefone}}
+                                        </div>
+                                        <div class="hidden sm:block elipsis">
+                                            {{cash.codigo}}
+                                        </div>
+                                        <div class="hidden xl:block elipsis">
+                                            <div *ngIf="cash.ultimaConsulta">
+                                                {{cash.ultimaConsulta| date: 'dd/MM/yyyy'}}
+                                            </div>
+                                            <div *ngIf="!cash.ultimaConsulta">--/--/----</div>
+                                        </div>
+                                    </a>
+                                </ng-container>
+                                <div class="pt-2 px-2 flex justify-end">
+                                    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </app-bg-card>
+            </as-split-area>
+            <as-split-area [minSize]="70" [maxSize]="80" *ngIf="pacienteSelecionado">
+                <div (click)="fecharCriacao()" class="pt-5 px-15 flex justify-end">
+                    <mat-icon class="cursor-pointer" style="transform: scale(1);">close</mat-icon>
+                </div>
+                <ng-container *ngTemplateOutlet="drawer"></ng-container>
+            </as-split-area>
+        </as-split>
+    </div>
+</div>
+
+<ng-template #drawer>
+	<app-paciente-detalhes [pacienteSelecionado]="pacienteSelecionado" *ngIf="isCriacao" (carregarPacientes)="carregarPacientes()" (fecharCriacao)="fecharCriacao()"></app-paciente-detalhes>
+    <app-pacientes-view (carregarPacientes)="carregarPacientes()" (fecharDetalhamento)="fecharDetalhamento()" [paciente]="pacienteSelecionado" *ngIf="!isCriacao"></app-pacientes-view>
+</ng-template>
+
+<ng-template #naoTemPacientes>
+   <div style="font-family: Inter; font-size: 20px; font-weight: 300;" class="border-t p-5 flex justify-center">Não tem pacientes</div>
+</ng-template>
